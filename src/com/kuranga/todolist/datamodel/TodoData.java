@@ -33,9 +33,12 @@ public class TodoData {
         return todoItems;
     }
 
-    // Delete 1
-        public void setTodoItems(List<TodoItem> todoItems) {
+    /*public void setTodoItems(List<TodoItem> todoItems) {
         this.todoItems = todoItems;
+    }*/
+
+    public void getTodoItem(TodoItem item) {
+        todoItems.add(item);
     }
 
     public void loadTodoItems() throws IOException {
