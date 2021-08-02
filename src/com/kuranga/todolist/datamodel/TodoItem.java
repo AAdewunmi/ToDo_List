@@ -38,8 +38,8 @@ public class TodoItem {
         this.deadline = deadline;
     }
 
-    @Override
+    /*@Override
     public String toString() {
         return shortDescription;
-    }
+    }*/
 }
