@@ -4,11 +4,13 @@ import com.kuranga.todolist.datamodel.TodoData;
 import com.kuranga.todolist.datamodel.TodoItem;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
@@ -16,6 +18,7 @@ import javafx.util.Callback;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,6 +38,9 @@ public class Controller {
 
     @FXML
     private ContextMenu listContextMenu;
+
+    @FXML
+    private ToggleButton filterToggleButton;
 
     public void initialize() {
         listContextMenu = new ContextMenu();
@@ -59,7 +65,16 @@ public class Controller {
             }
         });
 
-        todoListView.setItems(TodoData.getInstance().getTodoItems());
+        SortedList<TodoItem> sortedList = new SortedList<TodoItem>(TodoData.getInstance().getTodoItems(),
+                new Comparator<TodoItem>() {
+                    @Override
+                    public int compare(TodoItem o1, TodoItem o2) {
+                        return o1.getDeadline().compareTo(o2.getDeadline());
+                    }
+                });
+
+        //todoListView.setItems(TodoData.getInstance().getTodoItems());
+        todoListView.setItems(sortedList);
         todoListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         todoListView.getSelectionModel().selectFirst();
         todoListView.setCellFactory(new Callback<ListView<TodoItem>, ListCell<TodoItem>>() {
@@ -135,5 +150,11 @@ public class Controller {
         if(result.isPresent() && (result.get() == ButtonType.OK)){
             TodoData.getInstance().deleteTodoItem(item);
         }
+    }
+
+    public void handleFilterButton(ActionEvent actionEvent) {
+    }
+
+    public void handleKeyPressed(KeyEvent keyEvent) {
     }
 }
