@@ -10,3 +10,4 @@ Really  long todo Item	Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
 Sample Due Item	Demo item due today!	02-08-2021
 Sample Due Tomorrow Item	It's due tommorow!	03-08-2021
 Happening Today	It's happening today!	09-08-2021
+Buy Essence!	Purchase Wizkid's track "Essence ft. Justin Bieber & Tems" on itunes ;-)	18-08-2021
